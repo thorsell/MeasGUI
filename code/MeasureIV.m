@@ -102,7 +102,7 @@ for Idx = 1:NMEAS
     t_remain = (NMEAS - NDONE) * t_elapsed/NDONE;
     [days, hours, min, sec] = elapsed2date(round(t_remain));
     donestr = sprintf('Point %d out of %d', NDONE, NMEAS);
-    dstr = sprintf('Finnished in %d h, %d min, %d s.', hours, min, sec);
+    dstr = sprintf('Finished in %d h, %d min, %d s.', hours, min, sec);
     set(handles.countertext,'String',donestr);
     set(handles.timetext,'String',dstr);
     

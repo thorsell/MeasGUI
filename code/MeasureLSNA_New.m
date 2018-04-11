@@ -328,8 +328,8 @@ for bIdx = 1:NBIAS
             t_remain = round((NMEAS - NDONE) * t_elapsed/NDONE);
             [days, hours, min, sec] = elapsed2date(round(t_remain));
             donestr = sprintf('Point %d out of %d', NDONE, NMEAS);
-%             dstr = sprintf('Finnished in %s s.', num2str(t_remain));
-            dstr = sprintf('Finnished in about: %d day(s), %d h, %d min, %d sec.', days, hours, min, sec);
+%             dstr = sprintf('Finished in %s s.', num2str(t_remain));
+            dstr = sprintf('Finished in about: %d day(s), %d h, %d min, %d sec.', days, hours, min, sec);
             set(handles.countertext,'String',donestr);
             set(handles.timetext,'String',dstr);
             if MEAS_CANCEL
