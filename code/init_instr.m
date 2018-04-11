@@ -27,7 +27,7 @@ if ~strcmp(V1driver,'none')
         instr.dc1 = SMU(instruments.dc1_channel);
         set(instr.dc1,'HighCapacitanceMode',1);
     elseif strcmp(V1driver,'agilent_u2722a.mdd')
-        g_dc1 = visa('agilent','USB0::0x0957::0x4118::MY53490003::0::INSTR');
+        g_dc1 = visa('agilent','USB0::0x0957::0x4118::MY54330005::0::INSTR');
         instr.dc1multi = icdevice(V1driver,g_dc1);
         connect(instr.dc1multi);
         SMU = get(instr.dc1multi,'Smu');
@@ -74,6 +74,8 @@ if ~strcmp(V2driver,'none')
         elseif strcmp(V2driver,'keithley_2602A_dc.mdd')
             instr.dc2 = SMU(instruments.dc2_channel);
             set(instr.dc2,'HighCapacitanceMode',1);
+        elseif strcmp(V2driver,'agilent_u2722a.mdd')
+            instr.dc2 = SMU(instruments.dc2_channel);
         end
     else    
         if (strcmp(V2driver,'agilent_4156_dc.mdd') || strcmp(V2driver,'agilent_66xx.mdd'))
@@ -90,7 +92,7 @@ if ~strcmp(V2driver,'none')
             instr.dc2 = SMU(instruments.dc2_channel);
             set(instr.dc2,'HighCapacitanceMode',1);
         elseif strcmp(V2driver,'agilent_u2722a.mdd')
-            g_dc2 = visa('agilent','USB0::0x0957::0x4118::MY53490003::0::INSTR');
+            g_dc2 = visa('agilent','USB0::0x0957::0x4118::MY54330005::0::INSTR');
             instr.dc2multi = icdevice(V2driver,g_dc2);
             connect(instr.dc2multi);
             SMU = get(instr.dc2multi,'Smu');
