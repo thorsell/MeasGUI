@@ -1,5 +1,5 @@
 MeasGUI, written by Mattias Thorsell (mattias.thorsell@chalmers.se)
-v.20150312
+v.20190114
 
 Run MeasGUI.m to start the program
 
