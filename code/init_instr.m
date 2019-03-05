@@ -14,13 +14,13 @@ waitbar(0, h_wb, 'Initializing Bias. Pleas Wait.');
 if ~strcmp(V1driver,'none')
     instr.measure_dc1 = 1;
     if (strcmp(V1driver,'agilent_4156_dc.mdd') || strcmp(V1driver,'agilent_662x.mdd'))
-        g_dc1 = gpib('ni', 0, instruments.dc1_gpib);
+        g_dc1 = visa('ni', 0, instruments.dc1_gpib);
         instr.dc1multi = icdevice(V1driver,g_dc1);
         connect(instr.dc1multi);
         SMU = get(instr.dc1multi,'Smu');
         instr.dc1 = SMU(instruments.dc1_channel); 
     elseif strcmp(V1driver,'keithley_2602A_dc.mdd')
-        g_dc1 = gpib('ni', 0, instruments.dc1_gpib);
+        g_dc1 = visa('ni', 0, instruments.dc1_gpib);
         instr.dc1multi = icdevice(V1driver,g_dc1);
         connect(instr.dc1multi);
         SMU = get(instr.dc1multi,'Smu');
@@ -33,14 +33,15 @@ if ~strcmp(V1driver,'none')
         SMU = get(instr.dc1multi,'Smu');
         instr.dc1 = SMU(instruments.dc1_channel);
     elseif strcmp(V1driver,'hameg_hmp4040.mdd')
-        cmdstr = sprintf('COM%d', instruments.dc1_gpib);
-        g_dc1 = serial(cmdstr);
+%         cmdstr = sprintf('COM%d', instruments.dc1_gpib);
+%         g_dc1 = serial(cmdstr);
+        g_dc1 = visa('ni', 0, instruments.dc1_gpib);
         instr.dc1multi = icdevice(V1driver,g_dc1);
         connect(instr.dc1multi);
         SMU = get(instr.dc1multi,'Smu');
         instr.dc1 = SMU(instruments.dc1_channel);
     else
-        g_dc1 = gpib('ni', 0, instruments.dc1_gpib);
+        g_dc1 = visa('ni', 0, instruments.dc1_gpib);
         instr.dc1 = icdevice(V1driver, g_dc1);
         connect(instr.dc1);
     end
@@ -79,13 +80,13 @@ if ~strcmp(V2driver,'none')
         end
     else    
         if (strcmp(V2driver,'agilent_4156_dc.mdd') || strcmp(V2driver,'agilent_66xx.mdd'))
-            g_dc2 = gpib('ni', 0, instruments.dc2_gpib);
+            g_dc2 = visa('ni', 0, instruments.dc2_gpib);
             instr.dc2multi = icdevice(V2driver,g_dc2);
             connect(instr.dc2multi);
             SMU = get(instr.dc2multi,'Smu');
             instr.dc2 = SMU(instruments.dc2_channel);
         elseif strcmp(V2driver,'keithley_2602A_dc.mdd')
-            g_dc2 = gpib('ni', 0, instruments.dc2_gpib);
+            g_dc2 = visa('ni', 0, instruments.dc2_gpib);
             instr.dc2multi = icdevice(V2driver,g_dc2);
             connect(instr.dc2multi);
             SMU = get(instr.dc2multi,'Smu');
@@ -98,14 +99,15 @@ if ~strcmp(V2driver,'none')
             SMU = get(instr.dc2multi,'Smu');
             instr.dc2 = SMU(instruments.dc2_channel);
         elseif strcmp(V2driver,'hameg_hmp4040.mdd')
-            cmdstr = sprintf('COM%d', instruments.dc2_gpib);
-            g_dc2 = serial(cmdstr);
+%             cmdstr = sprintf('COM%d', instruments.dc2_gpib);
+%             g_dc2 = serial(cmdstr);
+            g_dc2 = visa('ni', 0, instruments.dc2_gpib);
             instr.dc2multi = icdevice(V2driver,g_dc2);
             connect(instr.dc2multi);
             SMU = get(instr.dc2multi,'Smu');
             instr.dc2 = SMU(instruments.dc2_channel);
         else
-            g_dc2 = gpib('ni', 0, instruments.dc2_gpib);
+            g_dc2 = visa('ni', 0, instruments.dc2_gpib);
             instr.dc2 = icdevice(V2driver, g_dc2);
             connect(instr.dc2);
         end
@@ -147,7 +149,7 @@ elseif strcmp(VNAdriver, 'LSNA')
     hlsna = calllib('lsnaapi','LSNAmeasure');
     
     % initilize input synthesizer
-    instr.hsrc = gpib('ni',0,instruments.synt_gpib);
+    instr.hsrc = visa('ni',0,instruments.synt_gpib);
     fopen(instr.hsrc);
     % Apply a safe level to source
     pset = -60;
@@ -163,12 +165,12 @@ else
         elseif (instruments.vna_gpib == instruments.dc2_gpib)
             instr.vna = instr.dc2;
         else
-            g_vna = gpib('ni', 0, instruments.vna_gpib);
+            g_vna = visa('ni', 0, instruments.vna_gpib);
             instr.vna = icdevice(VNAdriver, g_vna);
             connect(instr.vna);
         end
     else
-        g_vna = gpib('ni', 0, instruments.vna_gpib);
+        g_vna = visa('ni', 0, instruments.vna_gpib);
         instr.vna = icdevice(VNAdriver, g_vna);
         connect(instr.vna);
     end
