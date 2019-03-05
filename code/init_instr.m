@@ -13,35 +13,27 @@ waitbar(0, h_wb, 'Initializing Bias. Pleas Wait.');
 % INPUT VOLTAGE SUPPLY
 if ~strcmp(V1driver,'none')
     instr.measure_dc1 = 1;
-    if (strcmp(V1driver,'agilent_4156_dc.mdd') || strcmp(V1driver,'agilent_662x.mdd'))
-        g_dc1 = visa('ni', 0, instruments.dc1_gpib);
+    if (strcmp(V1driver,'agilent_4156_dc.mdd') || strcmp(V1driver,'agilent_662x.mdd')) || strcmp(V1driver,'hameg_hmp4040.mdd')
+        g_dc1 = visa('ni', instruments.dc1_gpib);
         instr.dc1multi = icdevice(V1driver,g_dc1);
         connect(instr.dc1multi);
         SMU = get(instr.dc1multi,'Smu');
         instr.dc1 = SMU(instruments.dc1_channel); 
     elseif strcmp(V1driver,'keithley_2602A_dc.mdd')
-        g_dc1 = visa('ni', 0, instruments.dc1_gpib);
+        g_dc1 = visa('ni', instruments.dc1_gpib);
         instr.dc1multi = icdevice(V1driver,g_dc1);
         connect(instr.dc1multi);
         SMU = get(instr.dc1multi,'Smu');
         instr.dc1 = SMU(instruments.dc1_channel);
         set(instr.dc1,'HighCapacitanceMode',1);
     elseif strcmp(V1driver,'agilent_u2722a.mdd')
-        g_dc1 = visa('agilent','USB0::0x0957::0x4118::MY54330005::0::INSTR');
-        instr.dc1multi = icdevice(V1driver,g_dc1);
-        connect(instr.dc1multi);
-        SMU = get(instr.dc1multi,'Smu');
-        instr.dc1 = SMU(instruments.dc1_channel);
-    elseif strcmp(V1driver,'hameg_hmp4040.mdd')
-%         cmdstr = sprintf('COM%d', instruments.dc1_gpib);
-%         g_dc1 = serial(cmdstr);
-        g_dc1 = visa('ni', 0, instruments.dc1_gpib);
+        g_dc1 = visa('agilent', instruments.dc1_gpib);
         instr.dc1multi = icdevice(V1driver,g_dc1);
         connect(instr.dc1multi);
         SMU = get(instr.dc1multi,'Smu');
         instr.dc1 = SMU(instruments.dc1_channel);
     else
-        g_dc1 = visa('ni', 0, instruments.dc1_gpib);
+        g_dc1 = visa('ni', instruments.dc1_gpib);
         instr.dc1 = icdevice(V1driver, g_dc1);
         connect(instr.dc1);
     end
@@ -51,8 +43,10 @@ if ~strcmp(V1driver,'none')
         instr.i1 = instr.dc1;
     elseif strcmp(I1driver, 'voltagesupply')
         instr.i1 = instr.dc1;
+    elseif strcmp(I1driver, 'none')
+        instr.i1 = instr.dc1;
     else
-        g_i1 = gpib('ni', 0, instruments.dcmeas1_gpib);
+        g_i1 = visa('ni', instruments.dcmeas1_gpib);
         instr.i1 = icdevice(I1driver, g_i1);
         connect(instr.i1);
     end
@@ -69,45 +63,33 @@ waitbar(0.2, h_wb, 'Initializing Bias. Please wait.');
 % OUTPUT VOLTAGE SUPPLY
 if ~strcmp(V2driver,'none')
     instr.measure_dc2 = 1;
-    if instruments.dc1_gpib == instruments.dc2_gpib
-        if (strcmp(V2driver,'agilent_4156_dc.mdd') || strcmp(V1driver,'agilent_662x.mdd'))
-            instr.dc2 = SMU(instruments.dc2_channel);
-        elseif strcmp(V2driver,'keithley_2602A_dc.mdd')
-            instr.dc2 = SMU(instruments.dc2_channel);
+    if strcmp(instruments.dc1_gpib, instruments.dc2_gpib)
+        instr.dc2 = SMU(instruments.dc2_channel);
+        if strcmp(V2driver,'keithley_2602A_dc.mdd')
             set(instr.dc2,'HighCapacitanceMode',1);
-        elseif strcmp(V2driver,'agilent_u2722a.mdd')
-            instr.dc2 = SMU(instruments.dc2_channel);
         end
     else    
-        if (strcmp(V2driver,'agilent_4156_dc.mdd') || strcmp(V2driver,'agilent_66xx.mdd'))
-            g_dc2 = visa('ni', 0, instruments.dc2_gpib);
+        if (strcmp(V2driver,'agilent_4156_dc.mdd') || strcmp(V2driver,'agilent_66xx.mdd')) || strcmp(V2driver,'hameg_hmp4040.mdd')
+            g_dc2 = visa('ni', instruments.dc2_gpib);
             instr.dc2multi = icdevice(V2driver,g_dc2);
             connect(instr.dc2multi);
             SMU = get(instr.dc2multi,'Smu');
             instr.dc2 = SMU(instruments.dc2_channel);
         elseif strcmp(V2driver,'keithley_2602A_dc.mdd')
-            g_dc2 = visa('ni', 0, instruments.dc2_gpib);
+            g_dc2 = visa('ni', instruments.dc2_gpib);
             instr.dc2multi = icdevice(V2driver,g_dc2);
             connect(instr.dc2multi);
             SMU = get(instr.dc2multi,'Smu');
             instr.dc2 = SMU(instruments.dc2_channel);
             set(instr.dc2,'HighCapacitanceMode',1);
         elseif strcmp(V2driver,'agilent_u2722a.mdd')
-            g_dc2 = visa('agilent','USB0::0x0957::0x4118::MY54330005::0::INSTR');
-            instr.dc2multi = icdevice(V2driver,g_dc2);
-            connect(instr.dc2multi);
-            SMU = get(instr.dc2multi,'Smu');
-            instr.dc2 = SMU(instruments.dc2_channel);
-        elseif strcmp(V2driver,'hameg_hmp4040.mdd')
-%             cmdstr = sprintf('COM%d', instruments.dc2_gpib);
-%             g_dc2 = serial(cmdstr);
-            g_dc2 = visa('ni', 0, instruments.dc2_gpib);
+            g_dc2 = visa('agilent',instruments.dc2_gpib);
             instr.dc2multi = icdevice(V2driver,g_dc2);
             connect(instr.dc2multi);
             SMU = get(instr.dc2multi,'Smu');
             instr.dc2 = SMU(instruments.dc2_channel);
         else
-            g_dc2 = visa('ni', 0, instruments.dc2_gpib);
+            g_dc2 = visa('ni', instruments.dc2_gpib);
             instr.dc2 = icdevice(V2driver, g_dc2);
             connect(instr.dc2);
         end
@@ -118,8 +100,10 @@ if ~strcmp(V2driver,'none')
         instr.i2 = instr.dc2;
     elseif strcmp(I2driver, 'voltagesupply')
         instr.i2 = instr.dc2;
+    elseif strcmp(I2driver, 'none')
+        instr.i2 = instr.dc2;
     else
-        g_i2 = gpib('ni', 0, instruments.dcmeas2_gpib);
+        g_i2 = visa('ni', instruments.dcmeas2_gpib);
         instr.i2 = icdevice(I2driver, g_i2);
         connect(instr.i2);    
     end
@@ -165,12 +149,12 @@ else
         elseif (instruments.vna_gpib == instruments.dc2_gpib)
             instr.vna = instr.dc2;
         else
-            g_vna = visa('ni', 0, instruments.vna_gpib);
+            g_vna = visa('ni', instruments.vna_gpib);
             instr.vna = icdevice(VNAdriver, g_vna);
             connect(instr.vna);
         end
     else
-        g_vna = visa('ni', 0, instruments.vna_gpib);
+        g_vna = visa('ni', instruments.vna_gpib);
         instr.vna = icdevice(VNAdriver, g_vna);
         connect(instr.vna);
     end
