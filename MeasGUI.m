@@ -126,7 +126,6 @@ contents = get(hObject,'String');
 
 if strcmp(contents{get(hObject,'Value')},'none')
     set(handles.dc_meas_1_gpib,'Enable','off');
-    set(handles.dc_meas_1_gpib,'String','0');
 else
     set(handles.dc_meas_1_gpib,'Enable','on');
 end
@@ -141,7 +140,6 @@ contents = get(hObject,'String');
 
 if strcmp(contents{get(hObject,'Value')},'none')
     set(handles.dc_meas_2_gpib,'Enable','off');
-    set(handles.dc_meas_2_gpib,'String','0');
 else
     set(handles.dc_meas_2_gpib,'Enable','on');
 end
@@ -156,7 +154,6 @@ contents = get(hObject,'String');
 
 if strcmp(contents{get(hObject,'Value')},'none')
     set(handles.dc_1_gpib,'Enable','off');
-    set(handles.dc_1_gpib,'String','0');
 else
     set(handles.dc_1_gpib,'Enable','on');
 end
@@ -169,7 +166,6 @@ contents = get(hObject,'String');
 
 if strcmp(contents{get(hObject,'Value')},'none')
     set(handles.dc_2_gpib,'Enable','off');
-    set(handles.dc_2_gpib,'String','0');
 else
     set(handles.dc_2_gpib,'Enable','on');
 end
