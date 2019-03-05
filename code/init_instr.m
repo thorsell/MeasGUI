@@ -161,7 +161,7 @@ else
         if (instruments.vna_gpib == instruments.dc1_gpib)
             instr.vna = instr.dc1;
         elseif (instruments.vna_gpib == instruments.dc2_gpib)
-            instr.vna = instr.dc1;
+            instr.vna = instr.dc2;
         else
             g_vna = gpib('ni', 0, instruments.vna_gpib);
             instr.vna = icdevice(VNAdriver, g_vna);
