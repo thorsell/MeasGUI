@@ -39,7 +39,7 @@ if ~strcmp(V1driver,'none')
     end
 
     % INPUT CURRENT METER
-    if instruments.dc1_gpib == instruments.dcmeas1_gpib
+    if strcmp(instruments.dc1_gpib, instruments.dcmeas1_gpib)
         instr.i1 = instr.dc1;
     elseif strcmp(I1driver, 'voltagesupply')
         instr.i1 = instr.dc1;
@@ -96,7 +96,7 @@ if ~strcmp(V2driver,'none')
     end
 
     % OUTPUT CURRENT METER
-    if instruments.dc2_gpib == instruments.dcmeas2_gpib
+    if strcmp(instruments.dc2_gpib, instruments.dcmeas2_gpib)
         instr.i2 = instr.dc2;
     elseif strcmp(I2driver, 'voltagesupply')
         instr.i2 = instr.dc2;

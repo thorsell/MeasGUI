@@ -88,29 +88,29 @@ handles.SETUP.DEMO = get(handles.demo,'Value');
 idx = get(handles.dc_1,'Value'); % get the chosen index
 TmpStr = get(handles.dc_1,'String'); % readout all instruments
 instruments.dc1 = TmpStr(idx); % select the chosen instrument
-instruments.dc1_gpib = string(get(handles.dc_1_gpib,'String'));
+instruments.dc1_gpib = get(handles.dc_1_gpib,'String');
 instruments.dc1_channel = str2double(get(handles.dc_1_channel,'String'));
 
 idx = get(handles.dc_2,'Value'); % get the chosen index
 TmpStr = get(handles.dc_2,'String'); % readout all instruments
 instruments.dc2 = TmpStr(idx); % select the chosen instrument
-instruments.dc2_gpib = string(get(handles.dc_2_gpib,'String'));
+instruments.dc2_gpib = get(handles.dc_2_gpib,'String');
 instruments.dc2_channel = str2double(get(handles.dc_2_channel,'String'));
 
 idx = get(handles.dc_meas_1,'Value'); % get the chosen index
 TmpStr = get(handles.dc_meas_1,'String'); % readout all instruments
 instruments.dcmeas1 = TmpStr(idx); % select the chosen instrument
-instruments.dcmeas1_gpib = string(get(handles.dc_meas_1_gpib,'String'));
+instruments.dcmeas1_gpib = get(handles.dc_meas_1_gpib,'String');
 
 idx = get(handles.dc_meas_2,'Value'); % get the chosen index
 TmpStr = get(handles.dc_meas_2,'String'); % readout all instruments
 instruments.dcmeas2 = TmpStr(idx); % select the chosen instrument
-instruments.dcmeas2_gpib = string(get(handles.dc_meas_2_gpib,'String'));
+instruments.dcmeas2_gpib = get(handles.dc_meas_2_gpib,'String');
 
 idx = get(handles.vna,'Value'); % get the chosen index
 TmpStr = get(handles.vna,'String'); % readout all instruments
 instruments.vna = TmpStr(idx); % select the chosen instrument
-instruments.vna_gpib = string(get(handles.vna_gpib,'String'));
+instruments.vna_gpib = get(handles.vna_gpib,'String');
 
 instruments.synt_gpib = string(get(handles.synt_gpib,'String'));
 instruments.ao = handles.SETUP.NUMATT;
@@ -279,31 +279,31 @@ handles.SETUP.DEMO = get(handles.demo,'Value');
 idx = get(handles.dc_1,'Value'); % get the chosen index
 TmpStr = get(handles.dc_1,'String'); % readout all instruments
 instruments.dc1 = TmpStr(idx); % select the chosen instrument
-instruments.dc1_gpib = string(get(handles.dc_1_gpib,'String'));
+instruments.dc1_gpib = get(handles.dc_1_gpib,'String');
 instruments.dc1_channel = str2double(get(handles.dc_1_channel,'String'));
 
 idx = get(handles.dc_2,'Value'); % get the chosen index
 TmpStr = get(handles.dc_2,'String'); % readout all instruments
 instruments.dc2 = TmpStr(idx); % select the chosen instrument
-instruments.dc2_gpib = string(get(handles.dc_2_gpib,'String'));
+instruments.dc2_gpib = get(handles.dc_2_gpib,'String');
 instruments.dc2_channel = str2double(get(handles.dc_2_channel,'String'));
 
 idx = get(handles.dc_meas_1,'Value'); % get the chosen index
 TmpStr = get(handles.dc_meas_1,'String'); % readout all instruments
 instruments.dcmeas1 = TmpStr(idx); % select the chosen instrument
-instruments.dcmeas1_gpib = string(get(handles.dc_meas_1_gpib,'String'));
+instruments.dcmeas1_gpib = get(handles.dc_meas_1_gpib,'String');
 
 idx = get(handles.dc_meas_2,'Value'); % get the chosen index
 TmpStr = get(handles.dc_meas_2,'String'); % readout all instruments
 instruments.dcmeas2 = TmpStr(idx); % select the chosen instrument
-instruments.dcmeas2_gpib = string(get(handles.dc_meas_2_gpib,'String'));
+instruments.dcmeas2_gpib = get(handles.dc_meas_2_gpib,'String');
 
 idx = get(handles.vna,'Value'); % get the chosen index
 TmpStr = get(handles.vna,'String'); % readout all instruments
 instruments.vna = TmpStr(idx); % select the chosen instrument
-instruments.vna_gpib = string(get(handles.vna_gpib,'String'));
+instruments.vna_gpib = get(handles.vna_gpib,'String');
 
-instruments.synt_gpib = string(get(handles.synt_gpib,'String'));
+instruments.synt_gpib = get(handles.synt_gpib,'String');
 instruments.ao = handles.SETUP.NUMATT;
 instruments.dio = handles.SETUP.NUMMOD;
 
@@ -330,31 +330,31 @@ handles.SETUP.DEMO = get(handles.demo,'Value');
 idx = get(handles.dc_1,'Value'); % get the chosen index
 TmpStr = get(handles.dc_1,'String'); % readout all instruments
 instruments.dc1 = TmpStr(idx); % select the chosen instrument
-instruments.dc1_gpib = string(get(handles.dc_1_gpib,'String'));
+instruments.dc1_gpib = get(handles.dc_1_gpib,'String');
 instruments.dc1_channel = str2double(get(handles.dc_1_channel,'String'));
 
 idx = get(handles.dc_2,'Value'); % get the chosen index
 TmpStr = get(handles.dc_2,'String'); % readout all instruments
 instruments.dc2 = TmpStr(idx); % select the chosen instrument
-instruments.dc2_gpib = string(get(handles.dc_2_gpib,'String'));
+instruments.dc2_gpib = get(handles.dc_2_gpib,'String');
 instruments.dc2_channel = str2double(get(handles.dc_2_channel,'String'));
 
 idx = get(handles.dc_meas_1,'Value'); % get the chosen index
 TmpStr = get(handles.dc_meas_1,'String'); % readout all instruments
 instruments.dcmeas1 = TmpStr(idx); % select the chosen instrument
-instruments.dcmeas1_gpib = string(get(handles.dc_meas_1_gpib,'String'));
+instruments.dcmeas1_gpib = get(handles.dc_meas_1_gpib,'String');
 
 idx = get(handles.dc_meas_2,'Value'); % get the chosen index
 TmpStr = get(handles.dc_meas_2,'String'); % readout all instruments
 instruments.dcmeas2 = TmpStr(idx); % select the chosen instrument
-instruments.dcmeas2_gpib = string(get(handles.dc_meas_2_gpib,'String'));
+instruments.dcmeas2_gpib = get(handles.dc_meas_2_gpib,'String');
 
 idx = get(handles.vna,'Value'); % get the chosen index
 TmpStr = get(handles.vna,'String'); % readout all instruments
 instruments.vna = TmpStr(idx); % select the chosen instrument
-instruments.vna_gpib = string(get(handles.vna_gpib,'String'));
+instruments.vna_gpib = get(handles.vna_gpib,'String');
 
-instruments.synt_gpib = string(get(handles.synt_gpib,'String'));
+instruments.synt_gpib = get(handles.synt_gpib,'String');
 instruments.ao = handles.SETUP.NUMATT;
 instruments.dio = handles.SETUP.NUMMOD;
 
