@@ -13,19 +13,15 @@ waitbar(0, h_wb, 'Initializing Bias. Pleas Wait.');
 % INPUT VOLTAGE SUPPLY
 if ~strcmp(V1driver,'none')
     instr.measure_dc1 = 1;
-    if (strcmp(V1driver,'agilent_4156_dc.mdd') || strcmp(V1driver,'agilent_662x.mdd')) || strcmp(V1driver,'hameg_hmp4040.mdd')
-        g_dc1 = visa('ni', instruments.dc1_gpib);
-        instr.dc1multi = icdevice(V1driver,g_dc1);
-        connect(instr.dc1multi);
-        SMU = get(instr.dc1multi,'Smu');
-        instr.dc1 = SMU(instruments.dc1_channel); 
-    elseif strcmp(V1driver,'keithley_2602A_dc.mdd')
+    if (strcmp(V1driver,'agilent_4156_dc.mdd') || strcmp(V1driver,'agilent_662x.mdd') || strcmp(V1driver,'hameg_hmp4040.mdd') || strcmp(V1driver,'keithley_2602A_dc.mdd'))
         g_dc1 = visa('ni', instruments.dc1_gpib);
         instr.dc1multi = icdevice(V1driver,g_dc1);
         connect(instr.dc1multi);
         SMU = get(instr.dc1multi,'Smu');
         instr.dc1 = SMU(instruments.dc1_channel);
-        set(instr.dc1,'HighCapacitanceMode',1);
+        if strcmp(V1driver,'keithley_2602A_dc.mdd')
+            set(instr.dc1,'HighCapacitanceMode',1);
+        end
     elseif strcmp(V1driver,'agilent_u2722a.mdd')
         g_dc1 = visa('agilent', instruments.dc1_gpib);
         instr.dc1multi = icdevice(V1driver,g_dc1);
@@ -69,19 +65,15 @@ if ~strcmp(V2driver,'none')
             set(instr.dc2,'HighCapacitanceMode',1);
         end
     else    
-        if (strcmp(V2driver,'agilent_4156_dc.mdd') || strcmp(V2driver,'agilent_66xx.mdd')) || strcmp(V2driver,'hameg_hmp4040.mdd')
+        if (strcmp(V2driver,'agilent_4156_dc.mdd') || strcmp(V2driver,'agilent_66xx.mdd') || strcmp(V2driver,'hameg_hmp4040.mdd') || strcmp(V2driver,'keithley_2602A_dc.mdd'))
             g_dc2 = visa('ni', instruments.dc2_gpib);
             instr.dc2multi = icdevice(V2driver,g_dc2);
             connect(instr.dc2multi);
             SMU = get(instr.dc2multi,'Smu');
             instr.dc2 = SMU(instruments.dc2_channel);
-        elseif strcmp(V2driver,'keithley_2602A_dc.mdd')
-            g_dc2 = visa('ni', instruments.dc2_gpib);
-            instr.dc2multi = icdevice(V2driver,g_dc2);
-            connect(instr.dc2multi);
-            SMU = get(instr.dc2multi,'Smu');
-            instr.dc2 = SMU(instruments.dc2_channel);
-            set(instr.dc2,'HighCapacitanceMode',1);
+            if strcmp(V2driver,'keithley_2602A_dc.mdd')
+                set(instr.dc2,'HighCapacitanceMode',1);
+            end
         elseif strcmp(V2driver,'agilent_u2722a.mdd')
             g_dc2 = visa('agilent',instruments.dc2_gpib);
             instr.dc2multi = icdevice(V2driver,g_dc2);
